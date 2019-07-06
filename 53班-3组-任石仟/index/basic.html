@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">  
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Basic DataList - jQuery EasyUI Mobile Demo</title>  
+    <link rel="stylesheet" type="text/css" href="../js/themes/metro/easyui.css">  
+    <link rel="stylesheet" type="text/css" href="../js/themes/mobile.css">  
+    <link rel="stylesheet" type="text/css" href="../js/themes/icon.css">  
+    <script type="text/javascript" src="../js/jquery.min.js"></script>  
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script> 
+    <script type="text/javascript" src="../js/jquery.easyui.mobile.js"></script> 
+</head>
+<body>
+
+	<body class="easyui-layout">
+		<div data-options="region:'north',title:'登录',split:true" style="height:100px;line-height: 100px;">
+
+				<a href="javascript:void(0)" class="easyui-linkbutton" style="margin-right: 20px;margin-top:15px;float: right;" onclick="$('#dlg').dialog('open')">登录</a>
+			</div>
+		<div data-options="region:'west',title:'目录',split:true" style="width:205px;">
+				<div style="margin:20px 0;">
+						<a href="javascript:;" class="easyui-linkbutton" onclick="toggle()">打开</a>
+					</div>
+					<div id="sm" class="easyui-sidemenu" data-options="data:data"></div></div>
+		<div id="cnt" data-options="region:'center',title:'内容'" style="padding:5px;background:#eee;"></div>
+		<div id="dlg" class="easyui-dialog" title="用户登录" style="width:400px;padding:10px">
+	<div style="margin-bottom:10px">
+			<input class="easyui-textbox" style="width:100%;height:40px;padding:12px" data-options="prompt:'在次输入用户名',iconCls:'icon-man',iconWidth:38">
+		</div>
+		<div style="margin-bottom:20px">
+			<input class="easyui-textbox" type="password" style="width:100%;height:40px;padding:12px" data-options="prompt:'Password',iconCls:'icon-lock',iconWidth:38">
+		</div>
+		<div style="margin-bottom:20px">
+			<input type="checkbox" checked="checked">
+			<span>zz</span>
+		</div>
+		<div>
+			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="login2()" style="padding:5px 0px;width:100%;">
+				<span style="font-size:14px;">登录</span>
+			</a>
+		</div>
+	</div>
+</body>
+<script>
+		var data = [{
+	text: '产品',
+	iconCls: 'icon-more',
+	state: 'open',
+	children: [{
+		text: '内容1'
+	},{
+		text: '内容2'
+	},{
+		text: '内容3',
+	}]
+},{
+	text: '内容4',
+	iconCls: 'icon-more',
+	children: [{
+		text: '内容5'
+	},{
+		text: '内容6'
+	},{
+		text: '内容7'
+	}]
+}];
+
+function toggle(){
+	var opts = $('#sm').sidemenu('options');
+	$('#sm').sidemenu(opts.collapsed ? 'expand' : 'collapse');
+	opts = $('#sm').sidemenu('options');
+	$('#sm').sidemenu('resize', {
+		width: opts.collapsed ? 60 : 200
+	})
+}
+
+function login(){
+	$('#dd').dialog({
+		title: 'My Dialog',
+		width: 400,
+		height: 200,
+		closed: false,
+		cache: false,
+		href: 'get_content.php',
+		modal: true
+	});
+	$('#dd').dialog('refresh', 'new_content.php');
+}
+function submitForm(){
+	$('#ff').form('submit');
+}
+function clearForm(){
+	$('#ff').form('clear');
+}
+$(function(){
+	$("#_easyui_tree_1").click(function(){
+		$("#cnt").html("兰博基尼");
+	})
+	$("#_easyui_tree_2").click(function(){
+		$("#cnt").html("黑暗武士");
+	})
+	$("#_easyui_tree_3").click(function(){
+		$("#cnt").html("法拉利");
+	})
+	$("#_easyui_tree_4").click(function(){
+		$("#cnt").html("辉腾");
+	})
+	$("#_easyui_tree_5").click(function(){
+		$("#cnt").html("保时捷");
+	})
+	$("#_easyui_tree_6").click(function(){
+		$("#cnt").html("911");
+	})
+})
+function login2(){
+	alert("haha");
+}
+</script>
+
+
+</body>	
+</html>
