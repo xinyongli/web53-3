@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+*{
+    color: #0d7aa3;
+}
+        #bgDiv {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: black;
+            opacity: 0.2; /*设置不透明度*/
+            display: none;
+        }
+
+        #fgDiv {
+            position: absolute;
+            width: 250px;
+            height: 280px;
+            border: 1px solid #808080;
+            background-color: #808080;
+            display: none;
+            border-radius: 5px 5px; /*设置圆角*/
+        }
+
+        td {
+            text-align: center;
+        }
+
+        #fgDiv input {
+            align-items: center;
+        }
+    </style>
+    <script src="../jquery/jquery-1.8.3.min.js"></script>
+    <script>
+        $(function () {
+
+            var list = [
+                {num:"1",pre:"<img src='../img/insurance/yu.gif'>", id: "2015-10-9", vip: "54455412", people: "张三",phone:"150776565445",co:"what",list:"交强险"},
+                {num:"2",pre:"<img src='../img/insurance/yu.gif'>", id: "2015-10-9", vip: "54455412", people: "李四",phone:"150776565445",co:"what",list:"交强险" },
+                {num:"3",pre:"<img src='../img/insurance/yu.gif'>", id: "2015-10-9", vip: "54455412", people: "雄大",phone:"150776565445",co:"what",list:"交强险" },
+                {num:"4",pre:"<img src='../img/insurance/yu.gif'>", id: "2015-10-9", vip: "54455412", people: "大雄",phone:"150776565445",co:"what",list:"交强险"},
+            ];
+            //生成表格数据
+            $.each(list, function (index, item) {
+                $('<tr id="' + item.id + '"><td>' + item.num+ '</td><td><input type="checkbox" /></td><td>' + item.pre + '</td><td><input type="button" style="background:url("../img/insurance/4.png")"></td><td>' + item.id + '</td><td>' + item.vip + '</td><td>' + item.people + '</td><td>' + item.phone + '</td><td>' + item.co + '</td><td>' + item.list + '</td></tr>').appendTo($("#list"));
+            });
+            //为复选框checkAll设置点击事件，完成全选、全消的功能
+            $("#checkAll").click(function () {
+                //根据当前复选框的状态设置其它行复选框的状态
+                $("#list :checkbox").attr("checked", this.checked);
+            });
+            //全选选
+            $("#btnReverse").click(function () {
+                //数据行的复选框
+                $("#list :checkbox").each(function () {
+                    this.checked = !this.checked;
+                });
+            });
+            //删除选中行
+            $("#btnDelete").click(function () {
+                //$("#list :checked").parent().parent().remove();
+                if (confirm('确定呀删除吗？')) {
+                $("#list :checked").parents("tr").remove();
+              }
+            });
+
+
+            //添加
+            $("#btnAdd").click(function () {
+                //显示添加界面
+                $("#bgDiv").css("display", "block").css("width", window.innerWidth + "px").height(window.innerHeight + "px");
+                $("#fgDiv").css("display", "block").css("left", (window.innerWidth - 250) / 2 + "px").css("top", (window.innerHeight - 100) / 2 + "px");
+
+                //打开的清除文本框中的数据
+                $("#fgDiv input[type=text]").val('');
+                $("#fgDiv :text,:hidden").val('');
+            });
+
+
+            //保存
+            $("#btnSave").click(function () {
+                var id = $("#hidId").val();
+                var len= $("tr").length;
+                if (id == '') {
+                    //添加
+                       $('<tr id="' + $("#textId").val() + '">'+
+                        '<td>' + len + '</td><td><input type="checkbox"/></td>'+
+                        '<td>' + "<img src='../img/insurance/yu.gif'>" + '</td><td><input type="button" style="background:url("../img/insurance/4.png")"></td>'+
+                        '<td>' + $("#textId").val() + '</td>'+
+                        '<td>' + $("#textvip").val() + '</td>'+
+                        '<td>' + $("#textpeople").val() + '</td>'+
+                        '<td>' + $("#textphone").val() + '</td>'+
+                        '<td>' + $("#textco").val() + '</td>'+
+                        '<td>' + $("#textlist").val() + '</td></tr>').appendTo($("#list")).find(":button").click(function () {
+                         //为修改按钮绑定事件
+                        //显示添加界面
+                        $("#bgDiv").css("display", "block").css("width", window.innerWidth + "px").height(window.innerHeight + "px");
+                        $("#fgDiv").css("display", "block").css("left", (window.innerWidth - 250) / 2 + "px").css("top", (window.innerHeight - 190) / 2 + "px");
+                        //找到当前按钮所在td之前的所有td
+                        var tds = $(this).parent().nextAll();
+                        //设置文本框的值
+                        //隐藏域存放修改之后的行的ID编号值
+                        $("#hidId").val(tds.eq(5).text());
+                        $("#textId").val(tds.eq(0).text());
+                        $("#textvip").val(tds.eq(1).text());
+                        $("#textpeople").val(tds.eq(2).text());
+                        $("#textphone").val(tds.eq(3).text());
+                        $("#textco").val(tds.eq(4).text());
+                        $("#textlist").val(tds.eq(5).text());
+                    });
+
+                } else {
+                    //修改
+                    var trds = $("#" + id + ">td");
+                    trds.eq(4).text($("#textId").val());
+                    trds.eq(5).text($("#textvip").val());
+                    trds.eq(6).text($("#textpeople").val());
+                    trds.eq(7).text($("#textphone").val());
+                    trds.eq(8).text($("#textco").val());
+                    trds.eq(9).text($("#textlist").val());
+
+
+                    //修改tr的id属性，保持数据一致
+                    $("#" + id).attr("id", $("#textId").val());
+                }
+                //隐藏界面
+                $("#bgDiv").css("display", "none");
+                $("#fgDiv").css("display", "none");
+            });
+
+
+            //修改
+            $("#list :button").click(function () {
+                //显示添加界面
+                $("#bgDiv").css("display", "block").css("width", window.innerWidth + "px").height(window.innerHeight + "px");
+                $("#fgDiv").css("display", "block").css("left", (window.innerWidth - 250) / 2 + "px").css("top", (window.innerHeight - 500) / 2 + "px");
+                //找到当前按钮所在td之前的所有td
+                var tds = $(this).parent().nextAll();
+                //设置文本框的值
+
+                $("#hidId").val(tds.eq(5).text());//隐藏域存放修改之后的行的ID编号值
+                $("#textId").val(tds.eq(0).text());
+                $("#textvip").val(tds.eq(1).text());
+                $("#textpeople").val(tds.eq(2).text());
+                $("#textphone").val(tds.eq(3).text());
+                $("#textco").val(tds.eq(4).text());
+                $("#textlist").val(tds.eq(5).text());
+               
+            })
+        });
+    </script>
+</head>
+<style>
+#h{
+    background: #0d7aa3;
+    height: 2rem;
+    line-height: 2rem;
+    width: auto;
+    color: #fff;
+    border-top-left-radius: 10px;
+
+   border-top-right-radius: 10px;
+
+    border-bottom-left-radius: 10px;
+
+    border-bottom-right-radius: 10px;
+    
+    padding-left: 50px;
+}
+span{
+    margin-right: 35%;
+}
+#btnAdd,#btnReverse,#btnDelete,#check{
+    position: relative;
+    display: inline-block;
+    border: 1px solid #99D3F5;
+    background:#096b91 ;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    padding-left:20px; 
+}
+#btnAdd{
+    margin-right: 1%;
+}
+#btnReverse{
+    margin-right: 1%;
+}
+#btnDelete{
+    margin-right: 1%;
+}
+</style>
+<body>
+    <div  id="h">
+             <span style="color: #fff">保单信息</span>
+            <input type="button" id="btnAdd" value="添加"style="background:url('../img/insurance/add.png') no-repeat center left; ">
+            <input type="button" id="btnReverse" value="全选"style="background:url('../img/insurance/add.png') no-repeat center left; ">
+            <input type="button" id="btnDelete" value="删除" style="background:url('../img/insurance/cancel.png') no-repeat center left; ">
+            <input type="button" id="check" value="查询"style="background:url('../img/insurance/searchbox_button.png')  no-repeat center left; ">
+    </div>
+
+    <table border="1"cellspacing="0" cellpadding="0">
+        <thead>
+        <th width="5%"></th>
+        <th width="5%">选择</th>
+        <th width="5%">预购</th>
+        <th width="5%">操作</th>
+        <th width="10%">日期</th>
+        <th width="10%">会员卡号</th>
+        <th width="10%">被保险人</th>
+        <th width="10%">手机号</th>
+        <th width="10%">保险公司</th>
+        <th width="10%">险种</th>
+        </thead>
+        <tbody id="list"></tbody>
+    </table>
+    <div id="bgDiv"></div>
+    <div id="fgDiv">
+        <input type="hidden" id="hidId" />
+        日一一期：<input type="text" id="textId" />
+        <br>
+        会员卡号：<input type="text" id="textvip" />
+        <br>
+        被保险人：<input type="text" id="textpeople" />
+        <br>
+        短信手机：<input type="text" id="textphone" />
+        <br>
+        保险公司：<input type="text" id="textco" />
+        <br>
+        险一一种：<input type="text" id="textlist" />
+        <input type="button" id="btnSave" value="保存" />
+    </div>
+    
+</body>
+</html>
