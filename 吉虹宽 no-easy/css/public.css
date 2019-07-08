@@ -1,0 +1,136 @@
+/* north start */
+/* 左侧 start */
+.logo{
+    width:40%;
+    overflow: hidden;
+    float:left;
+}
+.logo>div{
+    float:left;
+}
+.logo>.pic{
+    width:130px;
+    height:130px;
+    margin-top:-20px;
+    overflow: hidden;
+}
+.logo>.pic>img{
+    width:130px;
+    height:130px;
+}
+.logo>.big{
+    height:90px;
+    font-size:36px;
+    font-weight:bold;
+    color:#fff;
+    line-height:90px;
+}
+.logo>.small{
+    padding-left:10px;
+}
+.logo>.small>h4{
+    height:40px;
+    font-size:30px;
+    font-weight: 500;
+    color:#fff;
+    margin-top:16px;
+    margin-bottom:0px;
+}
+.logo>.small>span{
+    font-size:16px;
+    color:#fff;
+}
+/* 左侧 end */
+/* 右侧 start */
+.header-right{
+    margin-right:20px;
+    width:58%;
+    float:right;
+}
+.header-right>.top{
+    text-align: right;
+    height:40px;
+    line-height:40px; 
+}
+.header-right>.top>a{
+    color:#fff;
+    text-decoration: none; 
+    margin-right:20px;
+}
+.header-right>.top>a>img{
+    vertical-align: middle;
+    margin-right:4px;
+}
+.header-right>.bottom{
+    background:url("../img/public/bg.png") no-repeat center 10px;
+    text-align: center;
+    height:50px;
+    padding-top:10px;
+}
+.header-right>.bottom>span{
+    color:#fff;
+    line-height:50px; 
+}
+/* 右侧 end */
+/* north end */
+/* west start */
+.accordion{
+    border-width:0px;
+}
+.accordion .accordion-header{
+    border-radius:5px;
+    margin-bottom:8px;
+    background:#147c9f url("../img/public/line.png") repeat-y 203px 0px;
+}
+.panel-title{
+    font-size:16px;
+    color:#fff;
+    height:24px;
+    line-height:24px;
+}
+.accordion .accordion-header-selected .panel-title{
+    color:#fff;
+}
+.accordion-collapse{
+    background:url("../img/public/menu_arrows.png") no-repeat 0px 0px; 
+}
+.accordion-expand{
+    background:url("../img/public/menu_arrows.png") no-repeat -32px 0px;  
+}
+.easyui-accordion ul{
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+}
+.easyui-accordion ul>li{
+    width:230px;
+    height:30px;
+    line-height:30px;
+    margin-bottom:5px;
+}
+.easyui-accordion ul>li>a{
+    text-decoration: none;
+    color:#000;
+    font-size:14px;
+    font-weight:bold;
+    background:#dff0f7;
+    display:block;
+    padding-left:50px;
+}
+.panel-with-icon{
+    padding-left:30px;
+}
+/* west end */
+/* 删除边框线 start */
+.panel-header{
+    border-width:0px;
+    background-color:#147c9f;
+}
+.panel-body-noheader{
+    border-top-width:0px;
+}
+.panel-body{
+    border-width:0px;
+}
+/* 删除边框线 end */
+

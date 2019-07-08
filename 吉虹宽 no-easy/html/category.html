@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../jquery-easyui-1.7.0/themes/default/easyui.css">
+    <link rel="stylesheet" href="../css/category.css">
+    <title>学习园地分类设置</title>
+
+</head>
+<body>
+    <div class="center_content" data-options="region:'center',title:''" style="padding:5px;background:#fff;margin: 10px 0px 0px 20px;">
+        <div class="shu">
+            <span>当前位置：</span><span>公共模块</span><span>》</span><span>学习园地分类设置</span>
+        </div>
+        <div class="flm">
+            <form name="form2" action="#" method="GET">
+            分类名称：<input type="text" name="flm">
+            <span id="add" class="add"><img src="../img/category/edit_add.png" title="添加"> &nbsp; &nbsp;添加</span>
+        </form>
+        </div>
+        <table class="tb" style="width: 100%";border="0" cellspacing="0">
+            <colgroup>
+            <col style="width: 150px;">
+            <col style="width: auto;">
+            <col style="width:300px;">
+            <col style="width: auto;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <td>编号</td>
+                    <td>分类名称</td>
+                    <td>添加时间</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <td>1</td>
+                    <td>公共</td>
+                    <td>2015-10-19 23:05:45</td>
+                    <td>
+                        <img src="../img/category/pencil.png" title="编辑">
+                        <img src="../img/category/clear.png" title="删除">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" src="../jquery/jquery-1.11.2.js"></script>  
+    <script type="text/javascript" src="../jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/category.js"></script>
+</body>
+</html>
